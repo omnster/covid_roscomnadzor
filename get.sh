@@ -67,5 +67,6 @@ grep "О подтвер" $linksmd | while read -r line ; do
 	form_csv $line
 done
 
-cd $rootdir
+pushd $rootdir >/dev/null
 git add . && git commit -am "Update $(date +'%F_%T')" > /dev/null 2>&1 && git push
+popd > /dev/null
