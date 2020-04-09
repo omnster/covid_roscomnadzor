@@ -68,4 +68,4 @@ grep "О подтвер" $linksmd | while read -r line ; do
 done
 
 cd $rootdir
-git add . && git commit -am "Update $(date +'%F_%T')" && git push 
+git add . && git commit -am "Update $(date +'%F_%T')" > /dev/null && git push
