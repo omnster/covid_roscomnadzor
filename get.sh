@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 set -e
 
@@ -49,7 +49,7 @@ form_csv(){
 		:
 	else
 		[ -f $verbose ] && printf "Processing $outplain ...\n"
-		< $outplain | sed -n -e '/[[:digit:]]\+\./p' \
+		< "$outplain" | sed -n -e '/[[:digit:]]\+\./p' \
 			| sed 's/–//g;s/ случ.*//g' \
 			| tr -d '|.-' \
 			| sed 's/ *//;s/ *$//;s/ \+/ /g' \
@@ -63,10 +63,10 @@ form_csv(){
 
 }
 
-grep "О подтвер" $linksmd | while read -r line ; do
-	form_csv $line
+grep "О подтвер" "$linksmd" | while read -r line ; do
+	form_csv "$line"
 done
 
-pushd $rootdir >/dev/null
+pushd "$rootdir" >/dev/null
 git add . && git commit -am "Update $(date +'%F_%T')" > /dev/null 2>&1 && git push
 popd > /dev/null
