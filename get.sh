@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 set -e
 
@@ -35,12 +35,12 @@ form_csv(){
 	local outseries="$datadir""series/"$year"_"$month"_"$day".csv"
 	local url=$(echo $1 | sed 's/.*(//;s/).*//')
 
-	[ -f $outfile ] || curl -s -S "https://www.rospotrebnadzor.ru$url" | iconv -f CP1251 -t UTF8 > $outfile
+	[ -f $outfile ] || curl -s -S "https://www.rospotrebnadzor.ru$url" | iconv -f CP1251 -t UTF8 > "$outfile"
 
 	if [[ -f $outplain ]]; then
 		:
 	else
-		pandoc $outfile -f html -t plain -o $outplain
+		pandoc $outfile -f html -t plain -o "$outplain"
 		[ -f $verbose ] && printf "made $outplain\n"
 	fi
 
@@ -56,7 +56,7 @@ form_csv(){
 			| cut -d ' ' -f 2- \
 			| sed -n '/ /p' \
 			| awk '{ $(NF -1) = $(NF - 1)","; print }' \
-			> $outseries
+			> "$outseries"
 		[ -f $verbose ] && printf "Written $outseries\n"
 
 	fi
