@@ -7,7 +7,8 @@ verbose=/tmp/.verbose
 logfile="/tmp/.rospotrebnadzor.log"
 
 newsurl="https://www.rospotrebnadzor.ru/region/rss/rss.php?SHOWALL_1=1"
-datadir=${HOME}/dev/covid/covid_rospotrebnadzor/data/
+rootdir="${HOME}/dev/covid/covid_rospotrebnadzor/"
+datadir="$rootdir""data/"
 
 dateformat='%F_%H'
 linkshtml="$datadir""rss/rss""$(date +$dateformat).html"
@@ -66,4 +67,5 @@ grep "О подтвер" $linksmd | while read -r line ; do
 	form_csv $line
 done
 
-
+cd $rootdir
+git add . && git commit -am "Update $(date +'%F_%T')" && git push 
