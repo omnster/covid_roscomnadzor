@@ -70,5 +70,5 @@ done
 pushd "$rootdir" >/dev/null
 git add . 
 git commit -am "Update $(date +'%F_%T')" > /dev/null 2>&1 
-HOME=/home/yourAccount git push origin master > /dev/null 2>&1
+HOME=/home/rkhbvs/ git push origin master > /dev/null 2>&1
 popd > /dev/null
