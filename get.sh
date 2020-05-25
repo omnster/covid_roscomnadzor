@@ -2,6 +2,8 @@
 
 set -e
 
+. /home/rkhbvs/.keychain/rk-TP-x4-sh
+
 verbose=/tmp/.verbose
 
 logfile="/tmp/.rospotrebnadzor.log"
